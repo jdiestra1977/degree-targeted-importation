@@ -26,3 +26,5 @@ figures/schematic/*.log
 figures/schematic/*.pdf
 # personal planning notes
 PLAN.md
+# private submission material (cover letter, suggested referees)
+manuscript/pre/submission/

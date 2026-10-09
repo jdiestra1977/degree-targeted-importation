@@ -54,8 +54,12 @@ maximum at leading order.\\
 Step 2. In the second term, $\gamma+\eta>a-1$ on the interval considered, so the
 expectation is dominated by $w$ near $w_s=(M/x)^{1/\gamma}\to\infty$, where the tail
 density applies: $\E[(1-e^{-xw^\gamma/M})w^\eta]\simeq C_0(a-1)\int_0^\infty w^{\eta-a}(1-e^{-xw^\gamma/M})\,dw$.\\
-Step 3. Substitute $u=xw^\gamma/M$: $w=(Mu/x)^{1/\gamma}$, $dw=\gamma^{-1}(M/x)^{1/\gamma}u^{1/\gamma-1}du$,
-$w^{\eta-a}dw=\gamma^{-1}(M/x)^{(\eta-a+1)/\gamma}u^{-\nu-1}du$. The integral becomes
+Step 3. Substitute $u=xw^\gamma/M$, so that $w=(Mu/x)^{1/\gamma}$ and
+\[
+dw=\gamma^{-1}(M/x)^{1/\gamma}u^{1/\gamma-1}du,\qquad
+w^{\eta-a}dw=\gamma^{-1}(M/x)^{(\eta-a+1)/\gamma}u^{-\nu-1}du .
+\]
+The integral becomes
 $\gamma^{-1}(x/M)^{\nu}\int_0^\infty u^{-\nu-1}(1-e^{-u})du$, convergent for $0<\nu<1$.\\
 Step 4. Integration by parts: $\int_0^\infty u^{-\nu-1}(1-e^{-u})du=\nu^{-1}\Gamma(1-\nu)$. Since
 $\gamma\nu=a-1-\eta$, $\mathcal C-x\simeq\frac{AC_0(a-1)}{a-1-\eta}(x/M)^\nu\Gamma(1-\nu)$; the prefactor

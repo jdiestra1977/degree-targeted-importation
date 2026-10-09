@@ -5,6 +5,7 @@
 \documentclass[pre,onecolumn,superscriptaddress,amsmath,amssymb,floatfix]{revtex4-2}
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{xurl}
 \usepackage{amsthm}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 
@@ -51,22 +52,23 @@ Standard errors are computed between networks.
 
 \begin{figure}[h]
 \fig{fig1_secondary_cases.pdf}{0.9\textwidth}
-\caption{Linear response. (a) Mean secondary cases against the degree of the
-seeded node, for five transmissibilities (points: 100 networks, 30 seeding
-events per degree and network, $\pm2$ SE; degrees present in at least five
-networks; lines: $s(k)=Ak$). (b) Probability of no secondary case (lines: exact
-formula $r/(1-(1-r)(1-p)^k)$). Survey-calibrated networks, ages 25--44 and 15--44.
-Median $|z|<1$ except at $R\approx0.94$, where the tree-like approximation starts to
-fail.}
+\caption{Linear response on survey-calibrated networks for ages 15--44 and
+25--44 (columns). (a) Mean secondary cases against the degree of the seeded
+node for five transmissibilities. Points are means over 100 networks with 30
+seeding events per degree and network ($\pm2$ standard errors; degrees present in
+at least five networks), and lines are $s(k)=Ak$. (b) Probability of no secondary
+case, with the exact formula $r/(1-(1-r)(1-p)^k)$ as lines. The median $|z|$ is below 1
+except at $R\approx0.94$, where the tree-like approximation starts to fail.}
 \end{figure}
 
 \begin{figure}[h]
 \fig{fig4_major_outbreaks.pdf}{0.9\textwidth}
-\caption{Above threshold (synthetic negative-binomial networks, $\kappa\approx3$). (a)
-Probability that one seeding event starts a major outbreak against the degree
-of the seeded node (points: 20 networks $\times$ 50 events; lines: $1-h(k,u_2)$). (b)
-Probability of at least one major outbreak under repeated forcing against $\gamma$
-($\tau=0.6$; lines: product formula). It also peaks at intermediate $\gamma$.}
+\caption{Above threshold, on synthetic negative-binomial networks with $\kappa\approx3$.
+(a) Probability that one seeding event starts a major outbreak against the
+degree of the seeded node. Points are estimates from 20 networks with 50
+events each and lines are $1-h(k,u_2)$. (b) Probability of at least one major
+outbreak under repeated forcing against $\gamma$ at $\tau=0.6$, with the product formula
+as lines. It also peaks at an intermediate $\gamma$.}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,25 +88,29 @@ $n=10^6$ (fit against theory): 0.548 and 0.556 ($a=2.8$), 0.422 and 0.433 ($a=3.
 \end{figure}
 
 \begin{figure}[h]
-\fig{figS_scaling_Y2_collapse.pdf}{0.48\textwidth}\hfill
-\fig{figS_scaling_mu.pdf}{0.48\textwidth}
-\caption{Left: participation ratio against $(\gamma-\gamma_2)\ln n$. Right: targeted mean
-degree $\mu(\gamma)/\mu(0)$ for $n=10^2$--$10^6$.}
+\fig{figS_scaling_Y2_collapse.pdf}{\textwidth}\\[4pt]
+\fig{figS_scaling_mu.pdf}{\textwidth}
+\caption{Finite-size scaling. Top, participation ratio $Y_2$ against $(\gamma-\gamma_2)\ln n$;
+curves for $n=10^2$ to $10^6$ collapse near zero. Bottom, targeted mean degree
+$\mu(\gamma)/\mu(0)$ for the same $n$, with $\gamma_1$ (dotted) and $\gamma_2$ (dashed).}
 \end{figure}
 
 \begin{figure}[h]
 \fig{figS_scaling_gamma_star_limit.pdf}{0.95\textwidth}
-\caption{$\gamma^*$ against $x=c/n$ for finite $n$ (colours), the $n\to\infty$ limit (black)
-and $K/x$ (dashed). Finite $n$ approaches the limit from above.}
+\caption{Optimal exponent $\gamma^*$ against $x=c/n$ for $A=2$. Colored curves are
+medians for $n=10^2$ to $10^6$, the black curve the $n\to\infty$ limit, the dashed
+black curve $K/x$ and the grey dashed line $\gamma_2$. Finite $n$ approaches the limit
+from above and only logarithmically in $n$.}
 \end{figure}
 
 \begin{figure}[h]
 \fig{figS_gen_gamma_star_eta.pdf}{0.95\textwidth}
 \caption{Exact $n\to\infty$ limit of $\gamma^*$ (black) against the small-$x$ formula
-(maximum of $G$, red dashed; shown where its interior maximum exists), the
-leading order $\gamma_2-(a-1)/\ln(1/x)$ (dotted, $x\le10^{-2}$) and $K/x$ (blue, $x\ge0.3$),
-for response exponents $\eta=0.5$, 1, 2 and four tail laws. Dotted horizontal
-lines: $\gamma_2=a-1$.}
+(maximum of $G$, red dashed, shown where its interior maximum exists), the
+leading order $\gamma_2-(a-1)/\ln(1/x)$ (dotted, $x\le10^{-2}$) and $K/x$ (blue dashed,
+$x\ge0.3$), for response exponents $\eta=0.5$, 1, 2 (rows) and four tail laws
+(columns), with $A=2$. Horizontal dotted lines mark $\gamma_2=a-1$. The panel $a=2.8$,
+$\eta=2$ is empty because $\eta\ge a-1$.}
 \end{figure}
 
 \begin{table}[h]
@@ -140,7 +146,7 @@ twelve months from the 2006--2008 National Survey of Family Growth
 and not in the past year, and non-response is removed. The class of four or more
 partners is spread over $k=4,\dots,25$ with $P(k)\propto k^{-(\alpha+1)}$, where $\alpha$ is the
 exponent of the cumulative distribution of past-year partners
-\cite{liljeros2001web}: 2.31 for men and 2.54 for women.
+\cite{liljeros2001web}, 2.31 for men and 2.54 for women.
 
 \begin{table}[h]
 \caption{Past-year opposite-sex partners (\%), NSFG 2006--2008.}
@@ -159,7 +165,7 @@ Women 15--44 & 17.3 & 69.6 & 7.7 & 2.5 & 2.9 \\
 \paragraph{Balancing.} Men report more partners than women, a discrepancy
 attributed to reporting differences and to under-sampling of very active
 people \cite{brewer2000prostitution,mitchell2019why}. In the household
-network the excess is removed from men with at least two partners: a man of
+network the excess is removed from men with at least two partners. A man of
 degree $k$ loses at most $k-1$ stubs, chosen in proportion to $k-1$. Women's
 distribution and men's share without partners are then reproduced exactly;
 men's share with one partner rises (76\% to 80\% for ages 25--44). Repeated
@@ -173,9 +179,9 @@ partner (about 90 per $5\times10^3$ men).
 \paragraph{Commercial-sex core.} Following Brewer et al.\ \cite{brewer2000prostitution},
 who showed that sex workers missing from household surveys account for the
 men--women gap in reported partners, the men's surplus is assigned to sex-worker
-nodes instead of being trimmed: $0.05\%$ of women (the measured prevalence of
-full-time-equivalent sex workers), with log-normal weights matching the
-reported median and mean numbers of partners. Clients are chosen among men
+nodes instead of being trimmed. Sex workers are $0.05\%$ of women, the measured
+prevalence of full-time-equivalent sex workers, with log-normal weights
+matching the reported median and mean numbers of partners. Clients are chosen among men
 with several partners with weight $(k-1)^q$, $q=8$, sampled without replacement
 with exponential keys \cite{efraimidis2006weighted}, which gives about 4.6\% of men as
 clients. The implied number of partners per sex worker (mean about 300 per
@@ -183,8 +189,10 @@ year) agrees with the independently measured values.
 
 \begin{figure}[h]
 \fig{figS1_network_calibration.pdf}{0.9\textwidth}
-\caption{Survey calibration: model degree distributions against the survey
-(left) and excess degrees across 100 networks (right).}
+\caption{Survey calibration. (a) Degree distributions of the model networks
+(20 networks pooled) against the survey, by sex and age group. (b) Excess
+degrees $\kappa$ across 100 networks per age group. For ages 25--44, $\kappa$ ranges from
+0.51 to 1.07 and $\sqrt{\kappa_1\kappa_2}\le0.92$; for ages 15--44 it spreads around 1.}
 \end{figure}
 
 \begin{figure}[h]

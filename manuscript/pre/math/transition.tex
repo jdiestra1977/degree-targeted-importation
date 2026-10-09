@@ -1,0 +1,58 @@
+%% Shared math (transition); included by supplement.tex and pre_math_report.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The targeting transition}\label{sec:transition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$\pi_i=e^{\gamma\ell_i}/Z$ is a Gibbs measure with inverse temperature $\gamma$ and
+energies $-\ell_i$ \cite{derrida1981random}. Throughout, \ref{as:entry} and
+\ref{as:tail} hold and $n\to\infty$.
+
+\begin{lemma}[tail index]
+$w^s$ ($s>0$) has tail index $(a-1)/s$: $\Prob(W^s>y)\simeq C_0y^{-(a-1)/s}$. Hence
+$\E[w^s]<\infty$ iff $s<a-1$, and $w_{\max}=\max_{i\le n}w_i\sim(C_0n)^{1/(a-1)}$.
+\end{lemma}
+
+\begin{proposition}[critical exponents]
+$\gamma_1^{(\eta)}=a-1-\eta$ and $\gamma_2=a-1$, with
+\[
+\theta_\eta(\gamma)=\begin{cases}0,&\gamma<a-1-\eta,\\ \dfrac{\gamma-(a-1-\eta)}{a-1},&a-1-\eta<\gamma<a-1,\\[4pt] \dfrac{\eta}{a-1},&\gamma>a-1.\end{cases}
+\]
+\end{proposition}
+\begin{proof}
+$\mu_\eta=\overline{w^{\gamma+\eta}}/\overline{w^\gamma}$. If both exponents are below $a-1$, both
+averages converge by the strong law of large numbers, whose converse
+states that the empirical mean of nonnegative i.i.d.\ variables with infinite
+expectation grows without bound \cite{durrett2019probability}. Hence $\theta=0$. If $\gamma+\eta>a-1>\gamma$, the denominator
+converges and the numerator, a sum of i.i.d.\ variables with tail index
+$(a-1)/(\gamma+\eta)<1$, is of the order of its maximum $w_{\max}^{\gamma+\eta}$, divided by
+$n$: $\mu_\eta\sim n^{(\gamma+\eta)/(a-1)-1}$. If $\gamma>a-1$, both sums are of the order of
+their maxima: $\mu_\eta\sim w_{\max}^{\gamma+\eta}/w_{\max}^{\gamma}=w_{\max}^\eta\sim n^{\eta/(a-1)}$.
+\end{proof}
+
+\begin{proposition}[condensation]
+For $\gamma>\gamma_2$, the ranked targeting probabilities converge in law to
+Poisson--Dirichlet $\mathrm{PD}(\beta_{\mathrm t},0)$ with $\beta_{\mathrm t}=(a-1)/\gamma<1$
+\cite{pitman1997two}, and $\E[Y_2]\to1-(a-1)/\gamma$. For $\gamma<\gamma_2$, $Y_2\to0$.
+\end{proposition}
+\begin{proof}[Sketch]
+Normalized i.i.d.\ positive weights with tail index $\beta_{\mathrm t}\in(0,1)$ converge to
+$\mathrm{PD}(\beta_{\mathrm t},0)$; for this law $\E[\sum_iP_i^2]=1-\beta_{\mathrm t}$. For
+$\beta_{\mathrm t}>1$ (finite mean), $Y_2\le\max_i\pi_i\to0$.
+\end{proof}
+
+\begin{remark}[finite-size scaling]
+For finite $n$ the transition is rounded over a window of width $O(1/\log n)$
+around $\gamma_2$; we test the scaling variable $(\gamma-\gamma_2)\log n$. In the condensed phase
+$Y_2$ does not self-average.
+\end{remark}
+
+\begin{proposition}[cut-off crossover]
+If $w\le K_{\max}$, all moments are finite and there is no transition as $n\to\infty$.
+For finite $n$ the cut-off is irrelevant while $w_{\max}(n)\ll K_{\max}$, i.e.\ for
+$n\ll n_c=K_{\max}^{a-1}/C_0=(K_{\max}/k_0)^{a-1}/P_{\mathrm{tail}}$, and dominates for $n\gg n_c$.
+Capped/uncapped ratios of $\mu$ and $Y_2$ are therefore functions of $n/n_c$.
+\end{proposition}
+\begin{proof}
+$w_{\max}$ solves $n\Prob(W\ge w_{\max})\approx1$, i.e.\ $nC_0w_{\max}^{-(a-1)}\approx1$. Setting
+$w_{\max}=K_{\max}$ gives $n_c$.
+\end{proof}
+

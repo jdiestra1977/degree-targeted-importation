@@ -1,0 +1,28 @@
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+# macOS
+.DS_Store
+# exploratory figures written by scripts (paper figures in figures/paper/ are tracked)
+figures/*.pdf
+# LaTeX build files and outputs (rebuild from source)
+manuscript/**/*.aux
+manuscript/**/*.bbl
+manuscript/**/*.blg
+manuscript/**/*.log
+manuscript/**/*.out
+manuscript/**/*.toc
+manuscript/**/*.spl
+manuscript/**/*.fls
+manuscript/**/*.fdb_latexmk
+manuscript/**/*.synctex.gz
+manuscript/**/*.bcf
+manuscript/**/*.run.xml
+manuscript/**/*Notes.bib
+manuscript/**/*.pdf
+figures/schematic/*.aux
+figures/schematic/*.log
+figures/schematic/*.pdf
+# personal planning notes
+PLAN.md

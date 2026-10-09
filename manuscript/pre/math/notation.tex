@@ -1,0 +1,40 @@
+%% Notation table (report only).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Notation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{longtable}{p{2.6cm}p{12.6cm}}
+\toprule Symbol & Meaning \\ \midrule \endfirsthead
+\toprule Symbol & Meaning \\ \midrule \endhead
+$N_1,N_2$ & Sizes of the two node classes of the bipartite network (men, women) \\
+$k$ & Degree; $p_k$, $q_k$ degree distributions of classes 1 and 2 \\
+$\kappa_1,\kappa_2$ & Mean excess degrees $\avg{k(k-1)}/\avg{k}$ of classes 1 and 2 \\
+$B$, $n=|B|$ & Set of entry nodes (bridges, a subset of class 1) and its size \\
+$w_i$ & Importance of entry node $i$ (in the application $w_i=k_i$) \\
+$a$ & Tail exponent: $f(w)\simeq C_0(a-1)w^{-a}$, $\Prob(W\ge w)\simeq C_0w^{-(a-1)}$ \\
+$C_0$, $k_0$, $P_{\mathrm{tail}}$ & Tail amplitude; for a tail starting at $k_0$, $\Prob(W\ge w)=P_{\mathrm{tail}}(w/k_0)^{-(a-1)}$, $C_0=P_{\mathrm{tail}}k_0^{a-1}$ \\
+$\gamma$ & Targeting exponent \\
+$\pi_i(\gamma)$ & Targeting probability $w_i^\gamma/\sum_{j\in B}w_j^\gamma$ \\
+$\ell_i$ & $\log w_i$ \\
+$\alpha_t$ & Relative forcing intensity on day $t$, $\alpha_t\in[0,1]$ \\
+$\beta_{\mathrm{ext}}$ & Forcing rate \\
+$c$ & Expected number of seeding events without depletion, $\beta_{\mathrm{ext}}n\sum_t\alpha_t$ \\
+$x$ & Seeding events per entry node, $c/n$ \\
+$p$, $r$ & Daily transmission and recovery probabilities \\
+$D$ & Number of transmission days of an infected node \\
+$\tau$ & Per-edge transmissibility $\E[1-(1-p)^D]$ \\
+$R$ & $\tau\sqrt{\kappa_1\kappa_2}$ \\
+$A$ & Response per unit importance, $\tau(1+\tau\kappa_2)/(1-R^2)$ in the degree model \\
+$\eta$ & Response exponent: a seeding event at $i$ causes $Aw_i^\eta$ secondary cases \\
+$\mu_\eta(\gamma)$ & Targeted response $\sum_i\pi_iw_i^\eta$; $\mu\equiv\mu_1$ \\
+$I(\gamma)$, $C(\gamma)$ & Expected realized seedings and expected total cascade size \\
+$\gamma^*$ & $\arg\max_\gamma C(\gamma)$; $\gamma^*_\infty(x)$ its $n\to\infty$ limit at fixed $x$ \\
+$\gamma_1^{(\eta)}$, $\gamma_2$ & $a-1-\eta$ and $a-1$ \\
+$\theta_\eta(\gamma)$ & $d\log\mu_\eta/d\log n$ \\
+$Y_2$ & Participation ratio $\sum_i\pi_i^2$ \\
+$M(\gamma)$ & $\E[w^\gamma]$ \\
+$\nu(\gamma)$ & $(a-1-\eta)/\gamma$ \\
+$K$ & Large-$x$ constant, $\gamma^*\simeq K/x$ \\
+$K_{\max}$, $n_c$ & Cut-off of $w$ and the crossover size $K_{\max}^{a-1}/C_0$ \\
+\bottomrule
+\end{longtable}
+

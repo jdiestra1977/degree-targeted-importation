@@ -1,0 +1,230 @@
+%% Paper 1 (PRE): Supplemental Material draft.
+%% The assumptions, statements and proofs are in pre_math_body.tex (shared
+%% with pre_math_report.tex); edit them there.
+%% Compile: pdflatex supplement && bibtex supplement && pdflatex supplement x2
+\documentclass[pre,onecolumn,superscriptaddress,amsmath,amssymb,floatfix]{revtex4-2}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{assumption}{Assumption}
+\renewcommand{\theassumption}{A\arabic{assumption}}
+\theoremstyle{remark}
+\newtheorem{remark}[proposition]{Remark}
+
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\avg}[1]{\langle #1\rangle}
+\newcommand{\figdir}{../../figures/paper/}
+\newcommand{\fig}[2]{\IfFileExists{\figdir #1}{\includegraphics[width=#2]{\figdir #1}}%
+  {\fbox{\parbox[c][3cm][c]{#2}{\centering\textcolor{red}{Pending figure:\\ \texttt{\detokenize{#1}}}}}}}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thetable}{S\arabic{table}}
+
+\begin{document}
+\title{Supplemental Material for ``Condensation and optimal targeting of repeated forcing in heterogeneous networks''}
+\author{Jose Herrera-Diestra}
+\affiliation{Department of Mathematics, Tarleton State University, Stephenville, Texas 76402, USA}
+\maketitle
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% S1-S7: model, assumptions, statements and proofs (shared file)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{pre_math_body}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Validation of the epidemic results on networks}\label{sec:validation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+All comparisons are made over ensembles of independently built networks,
+since the analytical results describe the configuration-model ensemble.
+Standard errors are computed between networks.
+
+\begin{figure}[h]
+\fig{fig1_secondary_cases.pdf}{0.9\textwidth}
+\caption{Linear response. (a) Mean secondary cases against the degree of the
+seeded node, for five transmissibilities (points: 100 networks, 30 seeding
+events per degree and network, $\pm2$ SE; degrees present in at least five
+networks; lines: $s(k)=Ak$). (b) Probability of no secondary case (lines: exact
+formula $r/(1-(1-r)(1-p)^k)$). Survey-calibrated networks, ages 25--44 and 15--44.
+Median $|z|<1$ except at $R\approx0.94$, where the tree-like approximation starts to
+fail.}
+\end{figure}
+
+\begin{figure}[h]
+\fig{fig4_major_outbreaks.pdf}{0.9\textwidth}
+\caption{Above threshold (synthetic negative-binomial networks, $\kappa\approx3$). (a)
+Probability that one seeding event starts a major outbreak against the degree
+of the seeded node (points: 20 networks $\times$ 50 events; lines: $1-h(k,u_2)$). (b)
+Probability of at least one major outbreak under repeated forcing against $\gamma$
+($\tau=0.6$; lines: product formula). It also peaks at intermediate $\gamma$.}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Finite-size scaling and asymptotics of the optimal exponent}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+\fig{figS_transition.pdf}{\textwidth}
+\caption{Targeting transition for $n=10^2$ to $10^6$ entry nodes with degrees drawn
+from pure power laws ($a=2.8$, 3.31, 4), from the survey law with an uncapped
+tail, and from the survey law capped at 25 (columns). (a) Participation ratio
+$Y_2$ against $\gamma$, with the $n\to\infty$ limit $1-(a-1)/\gamma$ (black dashed). (b) Growth
+exponent $\theta(\gamma)$ fitted over $n=10^3$ to $10^6$ (points) and the prediction (lines).
+Vertical lines mark $\gamma_1=a-2$ (dotted) and $\gamma_2=a-1$ (dashed); in the capped column
+they mark the values of the uncapped law for reference. Plateaus of $\theta$ at
+$n=10^6$ (fit against theory): 0.548 and 0.556 ($a=2.8$), 0.422 and 0.433 ($a=3.31$),
+0.339 and 0.333 ($a=4$), 0.428 and 0.433 (survey), 0.017 (capped).}
+\end{figure}
+
+\begin{figure}[h]
+\fig{figS_scaling_Y2_collapse.pdf}{0.48\textwidth}\hfill
+\fig{figS_scaling_mu.pdf}{0.48\textwidth}
+\caption{Left: participation ratio against $(\gamma-\gamma_2)\ln n$. Right: targeted mean
+degree $\mu(\gamma)/\mu(0)$ for $n=10^2$--$10^6$.}
+\end{figure}
+
+\begin{figure}[h]
+\fig{figS_scaling_gamma_star_limit.pdf}{0.95\textwidth}
+\caption{$\gamma^*$ against $x=c/n$ for finite $n$ (colours), the $n\to\infty$ limit (black)
+and $K/x$ (dashed). Finite $n$ approaches the limit from above.}
+\end{figure}
+
+\begin{figure}[h]
+\fig{figS_gen_gamma_star_eta.pdf}{0.95\textwidth}
+\caption{Exact $n\to\infty$ limit of $\gamma^*$ (black) against the small-$x$ formula
+(maximum of $G$, red dashed; shown where its interior maximum exists), the
+leading order $\gamma_2-(a-1)/\ln(1/x)$ (dotted, $x\le10^{-2}$) and $K/x$ (blue, $x\ge0.3$),
+for response exponents $\eta=0.5$, 1, 2 and four tail laws. Dotted horizontal
+lines: $\gamma_2=a-1$.}
+\end{figure}
+
+\begin{table}[h]
+\caption{Large-$x$ constant $K$ ($A=2$) and the small-$x$ regime: exact limit
+$\gamma^*_\infty$, leading order $\gamma_2-(a-1)/\ln(1/x)$, and the maximum of $G$ (``--'': no
+interior maximum, i.e.\ asymptotic regime not yet reached).}
+\begin{ruledtabular}
+\begin{tabular}{lccc ccc ccc}
+ & & & & \multicolumn{3}{c}{$x=10^{-8}$} & \multicolumn{3}{c}{$x=10^{-4}$} \\
+Law & $a$ & $\eta$ & $K$ & exact & leading & $G$ & exact & leading & $G$ \\
+\hline
+power & 2.80 & 0.5 & 0.380 & 1.694 & 1.702 & 1.693 & 1.558 & 1.605 & -- \\
+power & 2.80 & 1 & 0.822 & 1.708 & 1.702 & 1.708 & 1.618 & 1.605 & 1.616 \\
+power & 3.31 & 0.5 & 0.372 & 2.156 & 2.185 & 2.145 & 1.950 & 2.059 & -- \\
+power & 3.31 & 1 & 0.799 & 2.184 & 2.185 & 2.184 & 2.048 & 2.059 & 2.036 \\
+power & 3.31 & 2 & 1.734 & 2.195 & 2.185 & 2.195 & 2.092 & 2.059 & 2.091 \\
+power & 4.00 & 0.5 & 0.365 & 2.768 & 2.837 & -- & 2.453 & 2.674 & -- \\
+power & 4.00 & 1 & 0.779 & 2.820 & 2.837 & 2.818 & 2.607 & 2.674 & -- \\
+power & 4.00 & 2 & 1.691 & 2.841 & 2.837 & 2.840 & 2.686 & 2.674 & 2.683 \\
+survey & 3.31 & 0.5 & 0.375 & 2.152 & 2.185 & 2.138 & 1.936 & 2.059 & -- \\
+survey & 3.31 & 1 & 0.810 & 2.181 & 2.185 & 2.181 & 2.034 & 2.059 & 2.018 \\
+survey & 3.31 & 2 & 1.758 & 2.192 & 2.185 & 2.192 & 2.082 & 2.059 & 2.081 \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Survey-calibrated networks used in the illustration}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Degrees.} Degrees are numbers of opposite-sex partners in the past
+twelve months from the 2006--2008 National Survey of Family Growth
+\cite{chandra2011sexual} (Table~\ref{tab:nsfg}); the class ``0'' combines never
+and not in the past year, and non-response is removed. The class of four or more
+partners is spread over $k=4,\dots,25$ with $P(k)\propto k^{-(\alpha+1)}$, where $\alpha$ is the
+exponent of the cumulative distribution of past-year partners
+\cite{liljeros2001web}: 2.31 for men and 2.54 for women.
+
+\begin{table}[h]
+\caption{Past-year opposite-sex partners (\%), NSFG 2006--2008.}
+\label{tab:nsfg}
+\begin{ruledtabular}
+\begin{tabular}{lccccc}
+ & 0 & 1 & 2 & 3 & 4+ \\ \hline
+Men 25--44 & 8.7 & 76.1 & 7.1 & 2.9 & 5.2 \\
+Women 25--44 & 8.2 & 82.7 & 5.4 & 1.7 & 1.9 \\
+Men 15--44 & 18.0 & 63.3 & 8.7 & 3.9 & 6.1 \\
+Women 15--44 & 17.3 & 69.6 & 7.7 & 2.5 & 2.9 \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\paragraph{Balancing.} Men report more partners than women, a discrepancy
+attributed to reporting differences and to under-sampling of very active
+people \cite{brewer2000prostitution,mitchell2019why}. In the household
+network the excess is removed from men with at least two partners: a man of
+degree $k$ loses at most $k-1$ stubs, chosen in proportion to $k-1$. Women's
+distribution and men's share without partners are then reproduced exactly;
+men's share with one partner rises (76\% to 80\% for ages 25--44). Repeated
+pairings of the same couple are merged. Across 100 realizations (ages
+25--44), $\kappa_1\in[0.51,0.82]$, $\kappa_2\in[0.54,1.07]$ and $\sqrt{\kappa_1\kappa_2}\le0.92$.
+
+\paragraph{Entry nodes.} Each man is bisexual with probability 0.02
+\cite{copen2016sexual}; entry nodes are bisexual men with at least one female
+partner (about 90 per $5\times10^3$ men).
+
+\paragraph{Commercial-sex core.} Following Brewer et al.\ \cite{brewer2000prostitution},
+who showed that sex workers missing from household surveys account for the
+men--women gap in reported partners, the men's surplus is assigned to sex-worker
+nodes instead of being trimmed: $0.05\%$ of women (the measured prevalence of
+full-time-equivalent sex workers), with log-normal weights matching the
+reported median and mean numbers of partners. Clients are chosen among men
+with several partners with weight $(k-1)^q$, $q=8$, sampled without replacement
+with exponential keys \cite{efraimidis2006weighted}, which gives about 4.6\% of men as
+clients. The implied number of partners per sex worker (mean about 300 per
+year) agrees with the independently measured values.
+
+\begin{figure}[h]
+\fig{figS1_network_calibration.pdf}{0.9\textwidth}
+\caption{Survey calibration: model degree distributions against the survey
+(left) and excess degrees across 100 networks (right).}
+\end{figure}
+
+\begin{figure}[h]
+\fig{fig5_core_network.pdf}{0.9\textwidth}
+\caption{Illustration with a commercial-sex core ($5\times10^4$ people per sex, 10
+networks). (a) Probability that one seeding event leads to an outbreak
+reaching 1\% of the population, for an entry node that is a client of the core
+and for other entry nodes, against $\tau$. (b) The same probability under
+repeated forcing against $\gamma$, for $c=10$ and 100.}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Numerical methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item \emph{Transmission.} $\rho=1/14$ per day ($r=0.069$); for a target $\tau$,
+$p=\tau r/[(1-r)(1-\tau)]$. Runs continue until no node is infectious. The forcing
+profile $\alpha_t$ is a 17-week incidence curve normalized to a maximum of 1
+($\sum_t\alpha_t=48.4$) \cite{nycdohmh2022mpox}.
+\item \emph{Linear response.} 100 networks per degree distribution
+($5\times10^3$ people per sex), 30 seeding events per degree and network,
+$\tau\in\{0.2,0.4,0.6,0.8,0.9\}$.
+\item \emph{Repeated forcing.} 50 networks, 10 runs per combination of
+$c\in\{10,50,200\}$, $\tau\in\{0.6,0.9\}$ and $\gamma\in\{-2,-1.5,\dots,6\}$; theory evaluated per network.
+\item \emph{Optimal exponent on networks.} 100 networks per distribution;
+$c=10^{0},10^{0.1},\dots,10^{3.5}$; $\gamma\in[-1,30]$ in steps of 0.05; curves flat to a
+relative tolerance $10^{-9}$ are reported as not identifiable.
+\item \emph{Scaling.} Entry-node degrees drawn i.i.d.\ without cap for $n=10^2$
+to $10^6$ (200--2000 samples per $n$); all sums over distinct degree values;
+$\theta$ fitted as the slope of the mean of $\ln\mu$ against $\ln n$ for $n\ge10^3$.
+\item \emph{Limit curve.} Expectations summed exactly to $k=10^6$ with the tail
+integrated analytically; $1-e^{-y}$ evaluated as $-\mathrm{expm1}(-y)$; finite-$n$
+optimum on a grid with step 0.005 below $\gamma=1$ and 0.01 above.
+\item \emph{Major outbreaks.} A run is major once it reaches half the
+theoretical major-outbreak size (minimum 100 cases).
+\item \emph{Core network.} 10 networks, $5\times10^4$ people per sex; 300 single
+seeding events per entry-node type and 30 forced runs per combination; a
+large outbreak is one reaching 1000 cases ($\approx1\%$ of the population).
+\end{itemize}
+\todo{code availability: repository URL and archived release DOI}
+
+\bibliography{../references}
+\end{document}

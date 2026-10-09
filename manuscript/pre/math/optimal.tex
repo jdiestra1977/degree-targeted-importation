@@ -1,0 +1,95 @@
+%% Shared math (optimal); included by supplement.tex and pre_math_report.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Optimal targeting in the large-population limit}\label{sec:optimal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lemma}[limit burden; uses \ref{as:entry}, \ref{as:tail}]
+At fixed $x=c/n$ and $\gamma<\gamma_2$,
+\[
+\frac{C(\gamma)}n\to\mathcal C(\gamma;x)=\E\!\left[\left(1-e^{-xw^\gamma/M(\gamma)}\right)\left(1+Aw^\eta\right)\right],
+\qquad M(\gamma)=\E[w^\gamma].
+\]
+For $\gamma>\gamma_2$, $C/n\to0$. Hence $\gamma^*_\infty(x)\le\gamma_2$.
+\end{lemma}
+\begin{proof}
+$c\pi_i=x\,w_i^\gamma/\overline{w^\gamma}$ and $\overline{w^\gamma}\to M(\gamma)<\infty$ (LLN), so
+$C/n=\overline{(1-e^{-c\pi})(1+Aw^\eta)}\to\mathcal C$. For $\gamma>\gamma_2$ a finite share of the $xn$
+seedings goes to $O(1)$ nodes, each seeded at most once, while the remaining
+weights are $o(1)$ per node: the number of realized seedings is $o(n)$.
+\end{proof}
+
+\begin{proposition}[large-$x$ asymptote]
+As $x\to\infty$, $\gamma^*\simeq K/x$, where $K>0$ is the unique root of
+$g(K)=\E\!\left[(\ell-\avg{\ell})(1+Aw^\eta)\,w^{-K}\right]=0$.
+\end{proposition}
+\begin{proof}
+First-order condition: $\sum_ie^{-xu_i}u_i(\ell_i-\bar\ell_\gamma)(1+Aw_i^\eta)=0$ with
+$u_i=n\pi_i$. Put $\gamma=K/x$; then $u_i=1+\gamma d_i+O(\gamma^2)$, $d_i=\ell_i-\avg\ell$,
+$\bar\ell_\gamma\to\avg\ell$, and $xu_i=x+Kd_i+O(K\gamma)$. Dividing by $e^{-x}$ and letting
+$x\to\infty$: $\sum_ie^{-Kd_i}d_i(1+Aw_i^\eta)=0$, which is $g(K)=0$ up to the positive
+factor $e^{K\avg\ell}$. Existence: $g(0)=A\,\mathrm{Cov}(\ell,w^\eta)>0$, and as $K\to\infty$ the
+weight $w^{-K}$ concentrates on the smallest value $w_{\min}$, where $d<0$, so $g$
+becomes negative. Uniqueness: with $d=\ell-\avg\ell$,
+$g'(K)=-\E[d\,\ell\,(1+Aw^\eta)w^{-K}]=-\E[d^2(1+Aw^\eta)w^{-K}]-\avg\ell\,g(K)$, so at any root
+$g'(K)=-\E[d^2(1+Aw^\eta)w^{-K}]<0$. Every root is a strict down-crossing of a
+continuous function, hence there is only one.
+\end{proof}
+
+\begin{proposition}[small-$x$ asymptotics]\label{prop:smallx}
+As $x\to0$, $\gamma^*_\infty(x)$ is asymptotically the interior local maximum, closest to
+$\gamma_2$, of
+\[
+G(\gamma)=-\nu(\gamma)\left[\log\tfrac1x+\log M(\gamma)\right]+\log\Gamma\big(1-\nu(\gamma)\big),
+\qquad \nu(\gamma)=\frac{a-1-\eta}{\gamma},
+\]
+which does not depend on $A$ or $C_0$. To leading order,
+\[
+\gamma_2-\gamma^*_\infty(x)\simeq\frac{a-1}{\log(1/x)}.
+\]
+\end{proposition}
+\begin{proof}
+Step 1. $\mathcal C=\E[1-e^{-xw^\gamma/M}]+A\,\E[(1-e^{-xw^\gamma/M})w^\eta]$. Since
+$\E[xw^\gamma/M]=x$, the first term is $x-o(x)$ for every $\gamma$ and does not move the
+maximum at leading order.\\
+Step 2. In the second term, $\gamma+\eta>a-1$ on the interval considered, so the
+expectation is dominated by $w$ near $w_s=(M/x)^{1/\gamma}\to\infty$, where the tail
+density applies: $\E[(1-e^{-xw^\gamma/M})w^\eta]\simeq C_0(a-1)\int_0^\infty w^{\eta-a}(1-e^{-xw^\gamma/M})\,dw$.\\
+Step 3. Substitute $u=xw^\gamma/M$: $w=(Mu/x)^{1/\gamma}$, $dw=\gamma^{-1}(M/x)^{1/\gamma}u^{1/\gamma-1}du$,
+$w^{\eta-a}dw=\gamma^{-1}(M/x)^{(\eta-a+1)/\gamma}u^{-\nu-1}du$. The integral becomes
+$\gamma^{-1}(x/M)^{\nu}\int_0^\infty u^{-\nu-1}(1-e^{-u})du$, convergent for $0<\nu<1$.\\
+Step 4. Integration by parts: $\int_0^\infty u^{-\nu-1}(1-e^{-u})du=\nu^{-1}\Gamma(1-\nu)$. Since
+$\gamma\nu=a-1-\eta$, $\mathcal C-x\simeq\frac{AC_0(a-1)}{a-1-\eta}(x/M)^\nu\Gamma(1-\nu)$; the prefactor
+does not depend on $\gamma$, so maximizing $\mathcal C$ is maximizing $G=\log[(x/M)^\nu\Gamma(1-\nu)]$.\\
+Step 5. Near $\gamma_2$, $M=m_0/\delta+O(1)$ with $\delta=\gamma_2-\gamma$, $m_0=C_0(a-1)$. Using
+$d\nu/d\gamma=-\nu/\gamma$ and $d\log M/d\gamma\simeq1/\delta$, the stationarity condition $G'(\gamma)=0$
+reads $(\nu/\gamma)[\log(1/x)+O(\log(1/\delta))]=\nu/\delta$, so $\delta\simeq\gamma/\log(1/x)\to\gamma_2/\log(1/x)$.
+The terms of relative order $\log(1/\delta)/\log(1/x)$ are not all captured by $G$ (the
+neglected $\gamma$-dependence of Step 1 and the regular part of $M$ enter at the same
+order), so only the leading term is claimed.
+\end{proof}
+
+\begin{remark}[assumptions of Proposition~\ref{prop:smallx}]
+(a) $0<\eta<a-1$; (b) $x\to0$ such that $w_s\to\infty$; (c) $\nu$ bounded away from 1,
+i.e.\ $\gamma$ away from $\gamma_1^{(\eta)}$: as $\nu\to1$, $\log\Gamma(1-\nu)\to+\infty$ because the
+integral of Step 3 is then dominated by small $w$, where the tail form does
+not hold, so $G$ has a spurious divergence at $\gamma_1^{(\eta)}$ and the relevant
+maximum is the interior one near $\gamma_2$; (d) Step 1 treats the $\gamma$-dependence of
+the importation term as subleading.
+\emph{Numerical check} (Section~\ref{sec:validation}): the leading order
+matches the exact limit to within about 0.07 for $\eta\ge1$ and $x\le10^{-4}$ (e.g.\
+$a=3.31$, $\eta=1$: 2.184 exact against 2.185 at $x=10^{-8}$), and converges more slowly
+for $\eta=0.5$, where $\nu$ is close to 1 even near $\gamma_2$. The interior maximum of $G$
+exists only below an $(a,\eta)$-dependent value of $x$; where it exists it
+reproduces the exact limit to within $10^{-3}$--$10^{-6}$, so $G$ also captures the
+subleading corrections numerically.
+\end{remark}
+
+\paragraph{Phase diagram of $\gamma^*$.} $0<\gamma^*_\infty(x)\le\gamma_2$ for all $x$ (positivity:
+Proposition~\ref{prop:pos} applied to $\mathcal C$; the bound: the Lemma above; strict
+inequality observed numerically; this bound holds only as $n\to\infty$); $\gamma^*_\infty\simeq K/x$ as
+$x\to\infty$; $\gamma_2-\gamma^*_\infty\simeq(a-1)/\log(1/x)$ as $x\to0$. Finite $n$ approaches the limit from
+above and only logarithmically in $n$ (numerics). For the survey law at $x=10^{-4}$,
+$\gamma^*=5.95$ ($n=10^4$) and 2.45 ($n=10^6$), against $\gamma^*_\infty=2.03$ and $\gamma_2=2.31$; at $x=1$,
+$\gamma^*=0.55$ already for $n=100$, against 0.52. The finite-$n$ optimum stays within 0.1 of
+the limit only for $x\gtrsim3/\sqrt n$ over $n=10^2$--$10^6$.
+

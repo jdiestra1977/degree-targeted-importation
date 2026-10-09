@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article and this repository."
+title: "Condensation and optimal targeting of repeated forcing in heterogeneous networks: code and results"
+authors:
+  - family-names: Herrera-Diestra
+    given-names: Jose
+    affiliation: "Department of Mathematics, Tarleton State University"
+license: MIT
+repository-code: "https://github.com/jdiestra1977/degree-targeted-importation"

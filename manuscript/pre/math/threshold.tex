@@ -1,0 +1,10 @@
+%% Shared math (threshold); included by supplement.tex and pre_math_report.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Above threshold}\label{sec:threshold}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+With $h(j,y)=\E_D[(1-\tau_D(1-y))^j]$, $\tau_D=1-(1-p)^D$, and $(u_1,u_2)$ the smallest
+solution of $u_1=\sum_jp^{(1)}_jh(j,u_2)$, $u_2=\sum_jq^{(1)}_jh(j,u_1)$, a seeding into a class-1
+node of degree $k$ starts a major outbreak with probability $1-h(k,u_2)$, and
+$\Prob(\ge1\text{ major outbreak})=1-\prod_{i\in B}[e^{-c\pi_i}+(1-e^{-c\pi_i})h(k_i,u_2)]$. This
+probability also peaks at intermediate $\gamma$ (numerics).
+

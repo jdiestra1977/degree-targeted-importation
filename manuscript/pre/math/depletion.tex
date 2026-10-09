@@ -1,0 +1,47 @@
+%% Shared math (depletion); included by supplement.tex and pre_math_report.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Repeated forcing and depletion}\label{sec:depletion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lemma}[uses \ref{as:forcing}, \ref{as:indep}]
+Entry node $i$ is ever seeded with probability $1-e^{-c\pi_i}$.
+\end{lemma}
+\begin{proof}
+While susceptible, it escapes day $t$ with probability $e^{-\beta_{\mathrm{ext}}\alpha_tn\pi_i}$,
+independently across days; the product over $t\le T$ is
+$e^{-\beta_{\mathrm{ext}}n\pi_i\sum_t\alpha_t}=e^{-c\pi_i}$. Under \ref{as:indep} nothing else
+removes it from the susceptible pool before it is seeded.
+\end{proof}
+
+\begin{proposition}[depletion; uses \ref{as:net}--\ref{as:indep}]
+\[
+I(\gamma)=\sum_{i\in B}\left(1-e^{-c\pi_i}\right),\qquad
+C(\gamma)=\sum_{i\in B}\left(1-e^{-c\pi_i}\right)\left(1+Aw_i^\eta\right).
+\]
+\end{proposition}
+
+\begin{proposition}[optimal targeting is positive]\label{prop:pos}
+Let $w$ not be constant on $B$. (i) $I(\gamma)\le I(0)$. (ii)
+\[
+\frac{dC}{d\gamma}=c\sum_i\pi_ie^{-c\pi_i}(\ell_i-\bar\ell)(1+Aw_i^\eta),\qquad
+\left.\frac{dC}{d\gamma}\right|_0=c\,e^{-c/n}A\,\mathrm{Cov}_B(\ell,w^\eta)>0,
+\]
+with $\mathrm{Cov}_B$ the unweighted covariance over $B$. (iii) $C$ is non-decreasing on
+$\gamma\le0$. (iv) Hence every maximizer satisfies $\gamma^*>0$, for all $c>0$. At finite $n$, $\gamma^*$
+can be infinite when $c$ is small (the burden then increases up to complete
+concentration); in the large-population limit it is finite
+(Section~\ref{sec:optimal}). (v) $C(\gamma)=c(1+A\mu_\eta(\gamma))+O(c^2)$ as $c\to0$, non-decreasing in $\gamma$.
+\end{proposition}
+\begin{proof}
+(i) Jensen: $\phi(\pi)=1-e^{-c\pi}$ is concave and $\sum\pi_i=1$, so
+$\sum_i\phi(\pi_i)\le n\phi(1/n)=I(0)$. (ii) Differentiate and use
+$d\pi_i/d\gamma=\pi_i(\ell_i-\bar\ell)$; at $\gamma=0$, $\pi_i=1/n$ and $\sum_i(\ell_i-\bar\ell)=0$
+remove the constant 1. (iii) Write $dC/d\gamma=c\,\mathrm{Cov}_\pi(\ell,h)$ with
+$h_i=e^{-c\pi_i}(1+Aw_i^\eta)$. For $\gamma\le0$, $\pi_i$ is non-increasing in $w_i$, so $e^{-c\pi_i}$ and
+$1+Aw_i^\eta$ are non-decreasing in $w_i$, and so is $h$. The covariance of two
+non-decreasing functions of $w$ is non-negative under any measure (Chebyshev's
+sum inequality), so $dC/d\gamma\ge0$ on $\gamma\le0$. (iv) By (iii), $C(\gamma)\le C(0)$ for $\gamma<0$, and by
+(ii), $C(\varepsilon)>C(0)$ for small $\varepsilon>0$. (v) Expand $1-e^{-c\pi}=c\pi+O(c^2)$ and use
+Proposition~\ref{prop:gain}(ii).
+\end{proof}
+

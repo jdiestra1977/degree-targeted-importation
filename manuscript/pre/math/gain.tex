@@ -1,0 +1,25 @@
+%% Shared math (gain); included by supplement.tex and pre_math_report.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Targeting gain per seeding event}\label{sec:gain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}
+$\mu_\eta(\gamma)=\sum_{i\in B}\pi_i(\gamma)w_i^\eta$. Mean secondary cases per seeding:
+$A\mu_\eta(\gamma)$; mean total per seeding: $1+A\mu_\eta(\gamma)$.
+\end{definition}
+
+\begin{proposition}\label{prop:gain}
+(i) $G_{\mathrm{sec}}=\mu_\eta(\gamma)/\mu_\eta(0)$ does not depend on $A$ (hence not on
+$\tau$, $\kappa_1$, $\kappa_2$). (ii) $d\mu_\eta/d\gamma=\mathrm{Cov}_\pi(\ell,w^\eta)\ge0$.
+(iii) $G_{\mathrm{sec}}\to w_{\max}^\eta/\mu_\eta(0)$ as $\gamma\to\infty$.
+(iv) $G_{\mathrm{tot}}=(1+A\mu_\eta(\gamma))/(1+A\mu_\eta(0))$ increases with $A$ when
+$\mu_\eta(\gamma)>\mu_\eta(0)$ and tends to $G_{\mathrm{sec}}$ as $A\to\infty$ ($R\to1^-$).
+\end{proposition}
+\begin{proof}
+(ii) $\pi_i=e^{\gamma\ell_i}/Z$ gives $d\pi_i/d\gamma=\pi_i(\ell_i-\bar\ell)$,
+$\bar\ell=\sum_j\pi_j\ell_j$, so $d\mu_\eta/d\gamma=\sum_i\pi_i(\ell_i-\bar\ell)w_i^\eta=\mathrm{Cov}_\pi(\ell,w^\eta)$,
+non-negative since $\ell$ and $w^\eta$ are increasing functions of $w$.
+(iii) As $\gamma\to\infty$, $\pi$ concentrates on $\arg\max w$. (iv)
+$\partial_AG_{\mathrm{tot}}=(\mu_\eta(\gamma)-\mu_\eta(0))/(1+A\mu_\eta(0))^2$.
+\end{proof}
+

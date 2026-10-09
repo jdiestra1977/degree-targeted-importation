@@ -1,0 +1,50 @@
+%% Shared math (model); included by supplement.tex and pre_math_report.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Model and assumptions}\label{sec:model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{assumption}[network]\label{as:net}
+The network is a static bipartite configuration model with degree
+distributions $p_k$ (class 1) and $q_k$ (class 2), with finite second moments.
+\end{assumption}
+\begin{assumption}[tree-like]\label{as:tree}
+Clusters started by finitely many seedings are locally tree-like: partners
+reached from an infected node are distinct, previously susceptible, and have
+numbers of other partners drawn independently from the excess-degree
+distributions $p^{(1)}_j=(j+1)p_{j+1}/\avg{k}$ (and $q^{(1)}_j$).
+\end{assumption}
+\begin{assumption}[transmission]\label{as:sir}
+Discrete days. Each infectious node infects each susceptible partner
+independently with probability $p$ per day; then every infectious node,
+including those infected that day, recovers with probability $r$. Runs
+continue until extinction.
+\end{assumption}
+\begin{assumption}[entry nodes]\label{as:entry}
+Entry nodes are a subset $B$ of class 1 chosen independently of degree, with
+$k\ge1$. Their importances $w_i$ are i.i.d.
+\end{assumption}
+\begin{assumption}[forcing]\label{as:forcing}
+On day $t\le T$ each susceptible entry node $i$ is seeded with probability
+$1-\exp(-\beta_{\mathrm{ext}}\alpha_tn\pi_i)$, independently. A seeding aimed at a
+non-susceptible node is lost (not redirected).
+\end{assumption}
+\begin{assumption}[independent clusters]\label{as:indep}
+Clusters started by different seedings do not overlap, and entry nodes are
+not infected through the network before they are seeded.
+\end{assumption}
+\begin{assumption}[tail]\label{as:tail}
+$w$ has a regularly varying tail, $\Prob(W\ge w)\simeq C_0w^{-(a-1)}$, $a>1$; for
+results involving $\eta$ we require $0<\eta<a-1$ (finite mean response). In the degree
+model ($w=k$, entry-node degrees following the class-1 law) we also require
+$a>3$, so that $\kappa_1$ and hence $A$ are finite.
+\end{assumption}
+
+\begin{remark}
+\ref{as:tree} fails near the epidemic threshold and for small, densely shared
+cores. The error of \ref{as:indep} is of the order of the attack fraction
+$C/(N_1+N_2)$; it is largest when seeding is intense and transmissibility high.
+The limit $n\to\infty$ at fixed $x$ keeps this fraction finite, so the asymptotic
+results are statements about the allocation problem with overlaps neglected.
+Both limitations are quantified numerically (Section~\ref{sec:validation}).
+\end{remark}
+

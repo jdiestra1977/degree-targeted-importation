@@ -9,9 +9,9 @@ nodes. Each seeding event lands on entry node *i* with probability
 proportional to w_i^gamma, where w is a heavy-tailed importance (the degree,
 in the epidemic application). For tails p(w) ~ w^-a and responses ~ w^eta,
 the targeted response diverges at gamma_1 = a - 1 - eta and the forcing
-condenses at gamma_2 = a - 1. Depletion of nodes already reached makes the
-burden-maximizing exponent gamma* positive; in large populations
-gamma* ~ K/x for intense forcing and gamma_2 - gamma* ~ (a - 1)/ln(1/x) for
+condenses at gamma_2 = a - 1. Under repeated forcing the burden-maximizing
+exponent gamma* is positive, and depletion of nodes already reached bounds it
+by gamma_2 in large populations, with gamma* ~ K/x for intense forcing and gamma_2 - gamma* ~ (a - 1)/ln(1/x) for
 sparse forcing, where x is the number of seeding events per entry node. A
 degree cut-off rounds the transitions below a crossover size n_c. The
 dynamics are a stochastic SIR epidemic on bipartite networks calibrated to
@@ -39,8 +39,7 @@ published survey data; the pathogen is hypothetical.
 | `figures/schematic/fig_schematic.tex` | TikZ source of the model schematic (Fig. 1) |
 | `manuscript/pre/main.tex` | Article (REVTeX 4.2) |
 | `manuscript/pre/supplement.tex` | Supplemental Material |
-| `manuscript/pre/pre_math_report.tex` | Extended methods and results: every derivation followed by its numerical evidence |
-| `manuscript/pre/math/` | Assumptions, statements and proofs, shared by the Supplemental Material and the extended report |
+| `manuscript/pre/pre_math_body.tex`, `manuscript/pre/math/` | Assumptions, statements and proofs, included by the Supplemental Material |
 | `manuscript/references.bib` | Bibliography |
 
 ## Requirements

@@ -1,5 +1,4 @@
-%% Paper 1: Physical Review E draft (REVTeX 4.2).
-%% Red [TODO: ...] marks pending items (see ../../PLAN.md).
+%% Article submitted to Physical Review E (REVTeX 4.2).
 %% Compile: pdflatex main && bibtex main && pdflatex main && pdflatex main
 \documentclass[pre,twocolumn,superscriptaddress,amsmath,amssymb,floatfix]{revtex4-2}
 \usepackage{graphicx}
@@ -8,7 +7,6 @@
 \usepackage{bm}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 
-\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\avg}[1]{\langle #1\rangle}
 \newcommand{\figdir}{../../figures/paper/}
@@ -19,8 +17,6 @@
 \begin{document}
 
 \title{Condensation and optimal targeting of repeated forcing in heterogeneous networks}
-%% alternatives: "Where external forcing enters a heterogeneous network:
-%% condensation, depletion and optimal targeting"
 
 \author{Jose Herrera-Diestra}
 \email{jherreradiestra@tarleton.edu}
@@ -39,15 +35,16 @@ degree of the seeded node, so the relative gain from targeting does not depend
 on transmissibility. The targeting distribution is a Gibbs measure. For
 importance tails $p(w)\sim w^{-a}$ and responses growing as $w^{\eta}$, the targeted
 response diverges at $\gamma_1=a-1-\eta$ and the forcing condenses on a few nodes at
-$\gamma_2=a-1$. Under repeated forcing, depletion of nodes already reached makes the
-burden-maximizing exponent $\gamma^*$ strictly positive, and in large populations
-$\gamma^*\le\gamma_2$. The optimum decays as $\gamma^*\simeq K/x$ for intense forcing, where $x$ is the
+$\gamma_2=a-1$. Under repeated forcing, the burden-maximizing exponent $\gamma^*$ is
+strictly positive, and in large populations depletion of nodes already reached
+bounds it by the condensation point, $\gamma^*\le\gamma_2$. The optimum decays as $\gamma^*\simeq K/x$ for intense forcing, where $x$ is the
 expected number of seeding events per entry node, and approaches the
 condensation point as $\gamma_2-\gamma^*\simeq(a-1)/\ln(1/x)$ for sparse forcing. A cut-off of the
 importance distribution rounds the transitions in populations smaller than a
 crossover size $n_c$ and removes them in larger ones. Networks calibrated to
 survey data on sexual partnerships have between $0.08\,n_c$ and $0.8\,n_c$ entry nodes,
-so their transitions are rounded but present.
+which places them in the finite-size regime, where the asymptotic results hold
+only qualitatively.
 \end{abstract}
 
 \maketitle
@@ -66,9 +63,6 @@ itself, because nodes with many internal contacts also receive more external
 contact, as when imported cases arrive preferentially at highly connected
 airports \cite{colizza2006role}.
 
-% Positioning (1): seeding literature. These works choose WHERE to place a
-% one-shot set of seeds; our forcing is stochastic, repeated and spread
-% continuously over entry nodes, so the question is how concentrated it is.
 The location of seeds affects spreading. Influence maximization asks which set
 of nodes to seed once so that a cascade is as large as possible
 \cite{kempe2003maximizing,morone2015influence}, and many studies rank single
@@ -82,14 +76,13 @@ layer sustains alone \cite{saumell2012epidemic,dickison2012epidemics}, and
 spillover between layers and its optimization have been studied numerically
 \cite{das2024sir,pan2019optimizing}. Models with spontaneous infection include
 external forcing but distribute it uniformly over nodes
-\cite{vanmieghem2012epidemics}. No theory yet describes repeated, time-varying
-forcing whose distribution over entry nodes is tuned continuously, nor how that
+\cite{vanmieghem2012epidemics}. To our knowledge, existing theory does not
+describe repeated, time-varying forcing whose distribution over entry nodes is
+tuned continuously, nor how that
 distribution interacts with the response of the entry nodes, which in many
 network dynamics scales as a power of the node degree
 \cite{barzel2013universality,hens2019spatiotemporal}.
 
-% Positioning (2): the limit laws are known; the novelty is what they imply
-% for targeted forcing. Referees will know REM/condensation.
 Concentrating the forcing with weights $w_i^\gamma$ defines a Gibbs measure,
 $\pi_i\propto e^{\gamma\ln w_i}$, with inverse temperature $\gamma$ and random energies $-\ln w_i$, the
 object studied by the theory of disordered systems
@@ -97,8 +90,8 @@ object studied by the theory of disordered systems
 heavy-tailed variables condense when a single term dominates
 \cite{derrida1987statistical,bouchaud1997universality,derrida1997random,majumdar2005nature,vezzani2019single},
 and sums of random exponentials have critical points at which the law of large
-numbers and the central limit theorem fail \cite{benarous2005limit}. We use
-these limit laws without claiming them. Our results concern their consequences
+numbers and the central limit theorem fail \cite{benarous2005limit}. These
+limit laws are known, and our results concern their consequences
 for a cascade driven through the measure. The response exponent of the nodes
 moves one critical point and leaves the condensation point unchanged, and
 depletion of nodes already reached turns condensation from a gain into a loss,
@@ -115,9 +108,9 @@ linear in the degree of the seeded node, so the relative gain from targeting
 does not depend on transmissibility; (ii) the targeting distribution is a Gibbs
 measure that, for degree tails $p(k)\sim k^{-a}$, has a divergence of the targeted
 degree at $\gamma_1=a-2$ and a condensation transition at $\gamma_2=a-1$; (iii) under
-repeated forcing, depletion of already-seeded nodes makes the
-burden-maximizing exponent $\gamma^*$ positive and, in large populations, bounded by
-the condensation point, with $\gamma^*\simeq K/x$ for intense forcing and
+repeated forcing, the burden-maximizing exponent $\gamma^*$ is positive and, in large
+populations, depletion of already-seeded nodes bounds it by the condensation
+point, with $\gamma^*\simeq K/x$ for intense forcing and
 $\gamma_2-\gamma^*\simeq(a-1)/\ln(1/x)$ for sparse forcing; (iv) these results hold for any node
 importance and response exponent $\eta$, with $\gamma_1=a-1-\eta$; and (v) a degree cut-off
 removes the transitions above a crossover size $n_c$, which locates finite real
@@ -133,8 +126,8 @@ network. An external source seeds them with probabilities $\pi_i\propto k_i^\gam
 $\gamma>0$ high-degree entry nodes receive more seeding events (arrow width). A
 seeding event aimed at an entry node that is already infected or recovered
 produces no infection (dashed arrow), which causes depletion. Each successful
-seeding starts an SIR cluster in the network (dark nodes and edges). Drawn with
-AI assistance (see Acknowledgments).}
+seeding starts an SIR cluster in the network (dark nodes and edges). Schematic
+drawn in TikZ with the assistance of Claude Opus 5.5 and checked by the author.}
 \label{fig:schematic}
 \end{figure}
 
@@ -145,8 +138,8 @@ class 1, $n=|B|$, chosen independently of degree among nodes with $k\ge1$, so th
 degrees follow the class-1 law. For a tail $p_k\sim k^{-a}$, $\kappa_1$ is finite only for
 $a>3$, which the degree model therefore requires.
 
-\paragraph{Targeted forcing.} Figure~\ref{fig:schematic} summarizes the model. On day $t=1,\dots,T$ each susceptible entry node $i$ is
-seeded with probability $1-\exp(-\beta_{\mathrm{ext}}\alpha_tn\pi_i)$, where $\alpha_t\in[0,1]$ is the
+\paragraph{Targeted forcing.} On day $t=1,\dots,T$ each susceptible entry node $i$ is
+seeded (Fig.~\ref{fig:schematic}) with probability $1-\exp(-\beta_{\mathrm{ext}}\alpha_tn\pi_i)$, where $\alpha_t\in[0,1]$ is the
 relative intensity of the external source and
 \begin{equation}\label{eq:pi}
 \pi_i(\gamma)=\frac{k_i^{\gamma}}{\sum_{j\in B}k_j^{\gamma}}.
@@ -166,7 +159,9 @@ produces no infection and is not reassigned to another entry node. As more
 entry nodes are reached, a growing share of the forcing therefore produces no
 new infection, an effect we call depletion. We write $c=\beta_{\mathrm{ext}}n\sum_t\alpha_t$ for the
 expected number of seeding events in the absence of depletion and $x=c/n$ for
-the number per entry node.
+the number per entry node. The results depend on the forcing profile $\alpha_t$ only
+through $c$. In simulations we use a 17-week incidence curve from the 2022 mpox
+outbreak in New York City \cite{nycdohmh2022mpox}.
 
 \paragraph{Dynamics.} In the discrete-time SIR model, each day every infectious node infects
 each susceptible partner with probability $p$ and then recovers with
@@ -271,7 +266,7 @@ forcing level. Concentrating the forcing on few nodes wastes it on nodes
 already seeded (Fig.~\ref{fig:gstar}a), which bounds $\gamma^*$ in large populations
 (Sec.~\ref{sec:asym}). In small populations under weak forcing the burden can
 instead keep increasing up to complete concentration. In simulations of
-survey-calibrated networks $\gamma^*\approx2$, 0.5--1 and 0.5 for $c=10$, 50 and 200, and
+survey-calibrated networks $\gamma^*\approx1.5$--2, 0.5--1 and 0.5 for $c=10$, 50 and 200, and
 targeting with $\gamma=30$ lowers the burden by a factor of 10 to 20 at large $c$.
 
 \begin{figure*}[t]
@@ -365,8 +360,9 @@ For caps $K_{\max}=25$--400 and two tail laws, the ratios of capped to uncapped
 targeted degree and participation ratio are close to 1 for $n/n_c\lesssim0.05$, fall
 to 0.25--0.5 near $n/n_c=1$ and vanish for $n\gg n_c$, collapsing as functions of
 $n/n_c$ (Fig.~\ref{fig:cross}). The entry-node pools of the networks used below
-(about 90 and 940 nodes) lie at $n/n_c\approx0.08$, where the transition is fully
-visible, and at $n/n_c\approx0.8$, in the middle of the crossover. The position of a
+(about 90 and 940 nodes) lie at $n/n_c\approx0.08$, where the cut-off barely
+affects the finite-size behavior, and at $n/n_c\approx0.8$, in the middle of the
+crossover. The position of a
 real population on this crossover therefore determines how strongly the
 targeting transition affects it.
 
@@ -390,8 +386,10 @@ every transmissibility. Each seeding event produces a finite cluster, and the
 results of Secs.~\ref{sec:results}A--D apply directly. With $5\times10^3$ people of
 each sex there are about 90 entry nodes, most with a single partner. The
 targeting gain saturates at $k_{\max}/\mu(0)\approx5$ (Fig.~\ref{fig:gain}), $\gamma^*$ follows the
-depletion law of Fig.~\ref{fig:gstar}, and the pool lies at $n/n_c\approx0.08$, where
-the transition is rounded but not erased (Fig.~\ref{fig:cross}).
+depletion law of Fig.~\ref{fig:gstar}, and the pool lies at $n/n_c\approx0.08$
+(Fig.~\ref{fig:cross}). A pool this small is far from the asymptotic regime, so
+the transitions appear only as the finite-size behavior of Figs.~\ref{fig:gain}
+and \ref{fig:gstar}.
 Whether the tail of partner numbers is a power law is debated
 \cite{jones2003assessment,handcock2004likelihood}. The results depend on it
 only through $a$, and for pools this small the cut-off, not the tail law,
@@ -440,11 +438,29 @@ determine the critical points, and the number of seeding events per entry
 point determines where between uniform targeting and condensation the most
 damaging allocation lies.
 
+The bipartite structure enters the results only through the constant $A$ of
+Eq.~\eqref{eq:sk}. In a unipartite configuration network with mean excess
+degree $\kappa$, setting $\kappa_1=\kappa_2=\kappa$ gives $A=\tau/(1-\tau\kappa)$ and $R=\tau\kappa$, so the
+response is again linear in the degree of the seeded node. The relative gain
+$\mu(\gamma)/\mu(0)$, the transitions at $\gamma_1$ and $\gamma_2$, the positivity of $\gamma^*$ and
+Eq.~\eqref{eq:lead} do not depend on the value of $A$ and carry over unchanged,
+and the large-$x$ constant $K$ changes only through the new value of $A$. Two
+differences arise when every node can be an entry node, as in a scale-free
+network without a distinguished bridge class. For $2<a<3$, $\kappa$ diverges with
+network size and the epidemic threshold vanishes
+\cite{pastorsatorras2015epidemic}, so the linear response holds only below a
+degree cut-off, while the targeting measure and the depletion law, which do
+not involve $\kappa$, hold for any tail. In addition, clusters started by
+different seeding events can reach other entry nodes, which adds internal
+depletion to the external depletion of the model. The no-overlap approximation
+of Sec.~\ref{sec:model} then limits the results to small attack fractions.
+
 Real populations are finite and their heterogeneity is bounded. The crossover
 size $n_c$ makes this quantitative. Populations with $n\ll n_c$ show the
 transition rounded by finite size, while for $n\gg n_c$ the cut-off removes it.
-The survey-calibrated networks we studied lie below or near $n_c$, so the
-targeting transition affects their response although it is rounded.
+The survey-calibrated networks we studied lie below or near $n_c$, so their
+response shows the finite-size form of the transitions rather than the
+asymptotic one.
 
 The analysis has limitations. The tree-like approximation fails close to the
 epidemic threshold and for small, densely shared cores, and clusters started
@@ -459,20 +475,19 @@ optimum. Above threshold, the probability of at least one major outbreak also
 peaks at an intermediate $\gamma$ \cite{SM}.
 
 \begin{acknowledgments}
-The author thanks Tarleton State University for its support. The author
-acknowledges the use of Claude Opus 5.5 (Anthropic), through Claude Code, to
-assist with asymptotic derivations, R simulation and plotting code, literature
-search and reference verification, the schematic in Fig.~\ref{fig:schematic},
-text editing and LaTeX formatting. The author conceptualized the physical
-framework, verified all mathematical derivations and generated code, and
-assumes full responsibility for the originality, accuracy and scientific
-integrity of this manuscript.
+The author thanks Tarleton State University for its support. The author used
+Claude Opus 5.5 (Anthropic) to assist with simulation code, asymptotic
+calculations, the schematic in Fig.~\ref{fig:schematic}, and text editing. All
+derivations were checked by the author and against simulations, and all code
+outputs were validated against the analytical predictions. The author takes
+full responsibility for the content.
 \end{acknowledgments}
 
 \section*{Data Availability}
 The code, simulation outputs and figure scripts that support the findings of
 this article are openly available at
-\url{https://github.com/jdiestra1977/degree-targeted-importation}. The degree distributions are calibrated to published
+\href{https://github.com/jdiestra1977/degree-targeted-importation}{\mbox{\nolinkurl{https://github.com/jdiestra1977/}}}\hfil\penalty0\hfilneg
+\href{https://github.com/jdiestra1977/degree-targeted-importation}{\mbox{\nolinkurl{degree-targeted-importation}}}. The degree distributions are calibrated to published
 survey data \cite{chandra2011sexual,copen2016sexual,liljeros2001web,brewer2000prostitution},
 and the forcing profile uses public incidence data \cite{nycdohmh2022mpox}.
 

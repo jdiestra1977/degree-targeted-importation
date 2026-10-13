@@ -28,3 +28,10 @@ figures/schematic/*.pdf
 PLAN.md
 # private submission material (cover letter, suggested referees)
 manuscript/pre/submission/
+# internal checking report (not part of the submission) and its report-only inputs
+manuscript/pre/pre_math_report.tex
+manuscript/pre/math/notation.tex
+manuscript/pre/math/validation_table.tex
+# figures not used in the article or Supplemental Material
+figures/paper/figS_core_calibration.pdf
+figures/paper/figS_scaling_theta.pdf

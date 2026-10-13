@@ -1,12 +1,11 @@
 ###############################################################
 # 03b_summarise_forced.R
-# Rebuilds the summaries and figures of 03_ensemble_validation.R from
-# its saved results, without re-simulating:
-#   Part B from results/03_forced_ensemble_raw.csv (the first version of
-#     03 computed the SEs after the means had overwritten the columns,
-#     giving NA);
-#   Part A: flags degrees present in fewer than MIN_NETS networks and
-#     redraws the figure without them.
+# Run after 03_ensemble_validation.R. Writes the final summaries used by
+# the figures from the saved raw results, without re-simulating:
+#   Part B: results/03_forced_ensemble.csv from
+#     results/03_forced_ensemble_raw.csv, with standard errors;
+#   Part A: flags in results/03_cluster_ensemble.csv the degrees present
+#     in fewer than MIN_NETS networks.
 #
 # SEs are across networks: each raw row is one network's mean over
 # REPS_F runs, so sd / sqrt(number of networks) includes both

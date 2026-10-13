@@ -1,6 +1,6 @@
 ###############################################################
 # 11_generalization_crossover.R   (theory only; no epidemic simulation)
-# Paper 1 (PRE) additions. Bridge "importance" w with tail p(w) ~ w^-a,
+# Secs. III E and III F (Figs. 5, 6 and S6). Bridge "importance" w with tail p(w) ~ w^-a,
 # targeting pi_i ~ w_i^gamma, response per importation A w^eta.
 #
 #   Part A  Generalized growth exponent of the targeted response

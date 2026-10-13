@@ -20,7 +20,8 @@
 #     how many are in the giant component.
 # Caveat: with a handful of hubs of degree ~100-1000, kappa_f is dominated
 # by a few nodes and the average-degree theory is not expected to hold; the
-# epidemic validation on this network is the next step.
+# epidemics on this network are simulated in 10b_core_realistic_tau.R.
+# Used for the core calibration in the Supplemental Material.
 #
 # Run from the repo root:   Rscript code/09_core_network_check.R
 # Output: results/09_core_network_check.csv (per network) and _summary.csv

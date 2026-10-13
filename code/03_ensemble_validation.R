@@ -1,6 +1,7 @@
 ###############################################################
 # 03_ensemble_validation.R
-# Results (1)-(3) validated over an ENSEMBLE of independently built
+# Linear response and repeated forcing (Secs. III A and III C; Figs. 4a
+# and S1) validated over an ENSEMBLE of independently built
 # networks (the analytical formulas describe the configuration-model
 # ensemble, not one particular network).
 #
@@ -20,7 +21,8 @@
 #         Theory: average-degree C(gamma) and node-level C(gamma).
 #
 # Run from the repo root:   Rscript code/03_ensemble_validation.R
-# Output: results/03_*.csv, figures/03_*.pdf     Runtime: ~20-40 min.
+# Output: results/03_*.csv (diagnostic plots figures/03_*.pdf, not tracked)
+# Runtime: ~20-40 min.
 ###############################################################
 
 suppressPackageStartupMessages({ library(ggplot2); library(dplyr); library(tidyr) })

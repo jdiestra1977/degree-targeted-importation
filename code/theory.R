@@ -71,7 +71,6 @@ beta_for_tau <- function(tau, rho) {
 
 # ── Degree distributions ────────────────────────────────────────────────────
 
-pmf_mean   <- function(pmf) sum((seq_along(pmf) - 1) * pmf)
 pmf_kappa  <- function(pmf) { k <- seq_along(pmf) - 1; sum(k * (k - 1) * pmf) / sum(k * pmf) }
 excess_pmf <- function(pmf) {           # pm1_j, j = 0..kmax-1
   k <- seq_along(pmf) - 1
@@ -122,15 +121,7 @@ target_weights <- function(kB, gamma, w = c("k", "log1p")) {
 }
 mu_gamma <- function(kB, gamma, w = "k") sapply(gamma, function(g) sum(target_weights(kB, g, w) * kB))
 
-gain_secondary <- function(kB, gamma, w = "k") mu_gamma(kB, gamma, w) / mu_gamma(kB, 0, w)
-gain_total <- function(kB, gamma, tau, kappa_m, kappa_f, w = "k") {
-  A <- A_factor(tau, kappa_m, kappa_f)
-  (1 + A * mu_gamma(kB, gamma, w)) / (1 + A * mu_gamma(kB, 0, w))
-}
-
 # ── (3) Depletion of the bridge pool under continuous forcing ──────────────
-
-c_expected_importations <- function(beta_ext, nB, alpha) beta_ext * nB * sum(alpha)
 
 forced_expectations <- function(kB, gamma, c, tau, kappa_m, kappa_f, w = "k") {
   A <- A_factor(tau, kappa_m, kappa_f)
@@ -150,9 +141,8 @@ forced_expectations_node <- function(kB, sB, gamma, c, w = "k") {
   }))
 }
 
-# Fast C(gamma) on a whole gamma grid for one bridge set: returns a
-# matrix of targeting probabilities (bridges x gamma); reuse it for many
-# c and tau.
+# Targeting probabilities for one bridge set on a whole gamma grid
+# (matrix, bridges x gamma); reuse it for many c and tau.
 pi_matrix <- function(kB, gamma, w = "k") {
   lw <- log(if (w == "k") kB else log1p(kB))
   X  <- outer(lw, gamma)
@@ -160,28 +150,11 @@ pi_matrix <- function(kB, gamma, w = "k") {
   E  <- exp(X)
   sweep(E, 2, colSums(E), "/")
 }
-cases_curve <- function(PI, c, value) {        # value_i = 1 + A k_i  or  1 + s_i
-  colSums((1 - exp(-c * PI)) * value)
-}
 
-# Large-|B| ensemble version: nB bridges with i.i.d. degrees, pmf b over
-# k = 1..K (b[j] = P(k = j)). Approximation: treats every degree class
-# as present in proportion b_k (breaks down when nB * b_k < 1).
-cases_ensemble <- function(gamma, c, nB, b, A, w = "k") {
-  k  <- seq_along(b)
-  wk <- if (w == "k") k else log1p(k)
-  sapply(gamma, function(g) {
-    Mg <- sum(b * wk^g)
-    nB * sum(b * (1 - exp(-(c / nB) * wk^g / Mg)) * (1 + A * k))
-  })
-}
-
-# Optimum of a curve on a grid (grid maximum; refine the grid if needed)
-argmax_grid <- function(x, y) x[which.max(y)]
-
-# ── Multi-type theory for the FSW-core network ──────────────────────────────
-# Partnerships are household (man - non-FSW woman) or commercial (client -
-# FSW). A man has h household and m commercial partners (correlated), a
+# ── Partnership types on the FSW-core network ───────────────────────────────
+# Used by 10b_core_realistic_tau.R to split men into clients (m > 0) and
+# non-clients. Partnerships are household (man - non-FSW woman) or
+# commercial (client - FSW). A man has h household and m commercial partners (correlated), a
 # household woman d partners, an FSW d_F clients. Arrival types (along a
 # partnership):  MW = at a household woman, WM = at a man via a household
 # partnership, MF = at an FSW, FM = at a client via a commercial partnership.
@@ -191,11 +164,9 @@ argmax_grid <- function(x, y) x[which.max(y)]
 #   M[WM, MW] = <h(h-1)>/<h>,  M[WM, MF] = <h m>/<h>       (men)
 #   M[MF, FM] = <d_F(d_F-1)>/<d_F>          (FSW)
 #   M[FM, MW] = <m h>/<m>,     M[FM, MF] = <m(m-1)>/<m>    (men)
-# Each onward partnership transmits with prob tau, so K = tau M and
-#   R = tau rho(M),  tau_c = 1 / rho(M)   (rho = spectral radius)
-#   z = (I - tau M)^{-1} 1   expected cluster size started by one arrival
-#   s(h, m) = tau (h z_MW + m z_MF)   secondary cases from an imported man
-# With no FSW this reduces to s(k) = A k (one household type).
+# The tree-based threshold is tau_c = 1 / rho(M) (rho = spectral radius).
+# The core is small and loop-rich, so this tree theory does not describe
+# it (see the Supplemental Material); only h and m are used.
 multitype_M <- function(net) {
   fsw <- net$fsw
   men <- seq_len(net$n_m)
@@ -211,14 +182,6 @@ multitype_M <- function(net) {
   if (sum(m) > 0) { M["FM", "MW"] <- sum(m * h) / sum(m); M["FM", "MF"] <- sb(m) }
   rho <- max(Mod(eigen(M, only.values = TRUE)$values))
   list(M = M, rho = rho, tau_c = 1 / rho, h = h, m = m)
-}
-multitype_z <- function(MT, tau) {
-  if (tau * MT$rho >= 1) return(rep(NA_real_, 4))
-  setNames(as.vector(solve(diag(4) - tau * MT$M, rep(1, 4))), rownames(MT$M))
-}
-multitype_secondary <- function(MT, i, tau) {       # i = man indices
-  z <- multitype_z(MT, tau)
-  tau * (MT$h[i] * z[["MW"]] + MT$m[i] * z[["MF"]])
 }
 
 # ── Targeting transition: large-|B| limit with a power-law degree tail ──────
@@ -270,7 +233,7 @@ gamma_star_limit <- function(L, x, A, n_grid = 60L, eta = 1) {
   optimize(function(g) law_C_per_bridge(L, g, x, A, eta), c(lo, hi), maximum = TRUE, tol = 1e-5)$maximum
 }
 
-# Small-x asymptotics of gamma*_inf (derivation in the technical report).
+# Small-x asymptotics of gamma*_inf (derivation in the Supplemental Material).
 # For x -> 0 the burden per bridge is dominated by bridges near the
 # saturation scale w_s = (E[w^g]/x)^(1/g); with the tail p(w) ~ w^-a,
 #   C/n - x  ~  const * (x / E[w^g])^nu * Gamma(1 - nu),

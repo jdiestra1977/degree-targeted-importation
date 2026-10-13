@@ -1,6 +1,6 @@
 ###############################################################
 # 04_gamma_star.R   (theory only; no epidemic simulation)
-# Result (3): the targeting exponent gamma* that maximises expected
+# Sec. III C and Fig. 4b,c: the targeting exponent gamma* that maximises expected
 # burden C(gamma) under continuous importation with depletion, as a
 # function of spillover intensity c (expected importations without
 # depletion) and transmissibility.
@@ -21,7 +21,8 @@
 # that R = tau sqrt(kappa_m kappa_f) = 0.3 / 0.6 / 0.9.
 #
 # Run from the repo root:   Rscript code/04_gamma_star.R
-# Output: results/04_*.csv, figures/04_*.pdf     Runtime: ~1-3 min.
+# Output: results/04_*.csv (diagnostic plots figures/04_*.pdf, not tracked)
+# Runtime: ~1-3 min.
 ###############################################################
 
 suppressPackageStartupMessages({ library(ggplot2); library(dplyr); library(tidyr) })

@@ -14,7 +14,7 @@
 #             E[(log k - <log k>) (1 + A k) k^-K] = 0.
 #
 # Run from the repo root:   Rscript code/08_gamma_star_limit.R
-# Output: results/08_*.csv  (figure: section "Scaling F" in 06_figures.R)
+# Output: results/08_*.csv  (Figs. 4b and S5, made in 06_figures.R)
 # Runtime: ~10-20 min (Part A dominates).
 ###############################################################
 

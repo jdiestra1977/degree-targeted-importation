@@ -1,10 +1,10 @@
 ###############################################################
-# 10b_core_realistic_tau.R   (completes 10_multitype.R; final analysis)
-# 10_multitype.R chose tau relative to the tree-based threshold, which is
-# ~0.02 on the FSW-core network and turned out not to mark a real
-# transition (the core is ~25 shared hubs, far from tree-like). This script
-# repeats its Parts A and C at FIXED, realistic per-partnership
-# transmissibilities tau = 0.1, 0.3, 0.6, 0.9 (mpox: roughly 0.3-0.8).
+# 10b_core_realistic_tau.R
+# Illustration on the network with a commercial-sex core (Sec. III G and
+# Fig. S8). The tree-based threshold of this network (~0.02) does not mark
+# a real transition, because the core is ~25 shared hubs and far from
+# tree-like, so the runs use FIXED per-partnership transmissibilities
+# tau = 0.1, 0.3, 0.6, 0.9 (mpox: roughly 0.3-0.8).
 #
 #   Part A  Single importations into random clients and random non-client
 #           bridges: mean secondary cases (runs stopped at STOP_AT) and the
@@ -12,11 +12,11 @@
 #   Part C  Continuous NYC-2022 importation into bridges, w = k,
 #           gamma in {-2, 0, 1, 2, 3, 4, 6}, c = 10 and 100: expected cases
 #           (capped at STOP_AT) and P(reaching STOP_AT).
-# Same 10 baseline networks as 10_multitype.R (FSW 0.05%, q = 8, 50k/sex).
+# 10 baseline networks (FSW 0.05%, q = 8, 50k/sex).
 #
 # Run from the repo root:   Rscript code/10b_core_realistic_tau.R
-# Output: results/10b_*.csv     Runtime: ~45-90 min (3x the replicates of the
-# first run: 300 single importations and 30 forced runs per point per network).
+# Output: results/10b_*.csv     Runtime: ~45-90 min (300 single importations
+# and 30 forced runs per point per network).
 ###############################################################
 
 suppressPackageStartupMessages({ library(dplyr) })
@@ -36,7 +36,7 @@ alpha <- load_alpha("data/msm_incidence_NYC.csv")
 
 A_rows <- list(); C_rows <- list()
 for (s in seq_len(N_NET)) {
-  net <- make_network_core(seed = 9100L + s)          # same networks as 10_multitype.R
+  net <- make_network_core(seed = 9100L + s)          # fixed seeds: same 10 networks in every run
   MT  <- multitype_M(net)
   B   <- choose_bridges(net, P_BI, seed = 9200L + s)
   kB  <- net$deg[B]

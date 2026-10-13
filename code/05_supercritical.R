@@ -1,6 +1,6 @@
 ###############################################################
 # 05_supercritical.R
-# Result (4): above threshold.
+# Above threshold (Supplemental Material, Fig. S2).
 #   Part A  P(major outbreak | one importation into a man of degree k)
 #           = 1 - h(k, u_f), u from the bipartite fixed point with the
 #           exact (geometric) infectious-period distribution.
@@ -17,7 +17,8 @@
 # outbreaks near threshold, where they are small.)
 #
 # Run from the repo root:   Rscript code/05_supercritical.R
-# Output: results/05_*.csv, figures/05_*.pdf     Runtime: ~15-40 min.
+# Output: results/05_*.csv (diagnostic plots figures/05_*.pdf, not tracked)
+# Runtime: ~15-40 min.
 ###############################################################
 
 suppressPackageStartupMessages({ library(ggplot2); library(dplyr) })

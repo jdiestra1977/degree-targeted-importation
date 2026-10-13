@@ -11,14 +11,26 @@
 # two columns = 7.0 in), so text appears at 8-9 pt in the paper. They
 # carry no titles or subtitles; that information is in the captions.
 #
-#   fig2_targeting_gain      main Fig. 1 (one column, panels stacked)
-#   fig_transition           main Fig. 2 (one column; survey law, Y2 and theta)
-#   figS_transition          SM (all laws, Y2 and theta)
-#   fig3_depletion_gamma_star main Fig. 3 (two columns)
-#   figS_gen_theta_eta       main Fig. 4 (one column)
-#   figS_gen_crossover       main Fig. 5 (one column)
-#   fig1, fig4, fig5, figS1, figS_scaling_*, figS_gen_gamma_star_eta,
-#   figS_core_calibration    Supplemental Material
+# File (figures/paper/)          Figure in the article
+#   fig_schematic                 Fig. 1 (TikZ, figures/schematic/; not made here)
+#   fig2_targeting_gain           Fig. 2
+#   fig_transition                Fig. 3
+#   fig3_depletion_gamma_star     Fig. 4 (two columns)
+#   figS_gen_theta_eta            Fig. 5
+#   figS_gen_crossover            Fig. 6
+#   fig1_secondary_cases          Fig. S1
+#   fig4_major_outbreaks          Fig. S2
+#   figS_transition               Fig. S3
+#   figS_scaling_Y2_collapse,
+#   figS_scaling_mu               Fig. S4 (two panels)
+#   figS_scaling_gamma_star_limit Fig. S5
+#   figS_gen_gamma_star_eta       Fig. S6
+#   figS1_network_calibration     Fig. S7
+#   fig5_core_network             Fig. S8
+# File names follow the order in which the figures were made, not their
+# final numbers. Sections that save figS_scaling_Y2, figS_scaling_theta,
+# figS_scaling_gamma_star and figS_core_calibration produce diagnostic
+# figures that are not in the article (they are not tracked by git).
 ###############################################################
 
 # ---- 0. Setup ----------------------------------------------------------------
@@ -78,7 +90,7 @@ G4 <- read.csv("results/04_gamma_star_summary.csv")
 A5 <- read.csv("results/05_pmajor_by_degree.csv")
 B5 <- read.csv("results/05_forced_major.csv")
 
-# ---- Fig 1 (SM). Secondary cases per seeding event ---------------------------
+# ---- Fig. S1. Secondary cases per seeding event ---------------------------
 # Points: ensemble simulation (100 networks, +-2 network-clustered SE),
 # degrees present in >= 5 networks, k <= 10. Lines: s(k) = A k.
 # Panel (b): probability of no secondary case, h(k, 0).
@@ -103,7 +115,7 @@ f1b <- ggplot(f1_dat, aes(k, sim_p0, colour = factor(tau))) +
 show((f1a / f1b) + plot_layout(guides = "collect") & theme(legend.position = "bottom"),
      "fig1_secondary_cases.pdf", w = PAGE, h = 5.6)
 
-# ---- Fig 2 (main Fig. 1). Targeting gain per seeding event -------------------
+# ---- Fig. 2. Targeting gain per seeding event -------------------
 # (a) gain in secondary cases mu(gamma)/mu(0) (independent of transmissibility).
 #     Red: entry nodes of the survey 25-44 networks (median over 100 networks;
 #     degrees capped at 25; dotted: median bound k_max/mu(0)). Greys: n entry
@@ -164,7 +176,7 @@ f2b <- ggplot(f2_tot, aes(gamma, gain, colour = factor(tau))) +
   theme_paper
 show(f2a / f2b, "fig2_targeting_gain.pdf", w = COL, h = 5.6)
 
-# ---- Fig 3 (main). Repeated forcing with depletion ---------------------------
+# ---- Fig. 4. Repeated forcing with depletion ---------------------------
 # (a) expected total cases vs gamma, survey 25-44 ensemble (50 networks),
 #     simulation (points +-2 SE) and node-level theory (lines), tau = 0.6.
 # (b) gamma* vs x = c / n. Red: survey networks (median and IQR over 100
@@ -232,7 +244,7 @@ f3c <- g4 %>% select(xb, gain_opt, gain_hub) %>%
   theme_paper
 show(f3a / (f3b | f3c), "fig3_depletion_gamma_star.pdf", w = PAGE, h = 5.8)
 
-# ---- Fig 4 (SM). Major outbreaks above threshold -----------------------------
+# ---- Fig. S2. Major outbreaks above threshold -----------------------------
 # NB(1.2,0.7) networks (supercritical). (a) P(major | one seeding event into a
 # class-1 node of degree k). (b) P(at least one major outbreak) under repeated
 # forcing vs gamma, tau = 0.6 (points: simulation +-2 SE; lines: theory).
@@ -253,7 +265,7 @@ f4b <- ggplot(filter(B5, tau == 0.6), aes(gamma, sim, colour = factor(c))) +
   theme_paper
 show(f4a | f4b, "fig4_major_outbreaks.pdf", w = PAGE, h = 3)
 
-# ---- Fig S1 (SM). Network calibration ----------------------------------------
+# ---- Fig. S7. Network calibration ----------------------------------------
 # (a) past-year partner distribution, model ensemble (20 networks, pooled)
 #     vs NSFG 2006-2008 targets, by sex. (b) kappa_1 (men) and kappa_2 (women)
 #     across the 100 networks of script 03.
@@ -318,7 +330,7 @@ if (file.exists("results/07_scaling_curves.csv")) {
   marks <- distinct(SC, dist, a) %>% mutate(g1 = a - 2, g2 = a - 1)
 } else message("Run code/07_scaling.R first")
 
-# ---- Scaling A. Order parameter Y2 (condensation) ----------------------------
+# ---- Scaling A. Order parameter Y2 (diagnostic; used in Fig. S3) ----------------------------
 # Participation ratio Y2 = sum pi_i^2 vs gamma for growing n. Black dashed:
 # limit 1 - (a - 1)/gamma above gamma_2 (0 below). Vertical lines: gamma_1
 # (dotted), gamma_2 (dashed).
@@ -334,7 +346,7 @@ sA <- ggplot(SC, aes(gamma, Y2_mean, colour = factor(n))) +
   theme_paper
 show(sA, "figS_scaling_Y2.pdf", w = PAGE, h = 2.5)
 
-# ---- Scaling B. Collapse of Y2 near gamma_2 ----------------------------------
+# ---- Scaling B. Collapse of Y2 near gamma_2 (Fig. S4, left) ----------------------------------
 # Same data vs (gamma - gamma_2) log n; curves for different n collapse near 0
 # if the width of the transition scales as 1/log n.
 
@@ -346,7 +358,7 @@ sB <- SC %>% mutate(x = (gamma - (a - 1)) * log(n)) %>% filter(abs(x) <= 15) %>%
   theme_paper
 show(sB, "figS_scaling_Y2_collapse.pdf", w = PAGE, h = 2.5)
 
-# ---- Scaling C. Growth exponent of the targeted mean degree ------------------
+# ---- Scaling C. Growth exponent theta (diagnostic; used in Fig. S3) ------------------
 # theta(gamma) = d ln mu / d ln n, fitted over n = 10^3..10^6 (points), vs the
 # piecewise-linear prediction (line).
 
@@ -361,12 +373,12 @@ sC <- ggplot(TH, aes(gamma)) +
   theme_paper
 show(sC, "figS_scaling_theta.pdf", w = PAGE, h = 2.3)
 
-# ---- Fig. S (SM). Targeting transition for all laws: Y2 (a), theta (b) ------
+# ---- Fig. S3. Targeting transition for all laws: Y2 (a), theta (b) ------
 show((sA + labs(tag = "(a)") + theme(legend.position = "right")) /
        (sC + labs(tag = "(b)")),
      "figS_transition.pdf", w = PAGE, h = 4.4)
 
-# ---- Fig. 2 (main). Targeting transition, survey law only (one column) -------
+# ---- Fig. 3. Targeting transition, survey law only (one column) -------
 # (a) Y2 vs gamma for n = 10^2..10^6 entry nodes with the uncapped survey law
 #     (a = 3.31); black dashed: n -> infinity limit. (b) theta(gamma) fitted
 #     over n = 10^3..10^6 (points) vs the prediction (line). Vertical lines:
@@ -390,7 +402,7 @@ t2b <- ggplot(filter(TH, dist == SURV), aes(gamma)) +
   theme_paper
 show(t2a / t2b, "fig_transition.pdf", w = COL, h = 5)
 
-# ---- Scaling D. Targeted mean degree mu(gamma)/mu(0) vs gamma, by n ---------
+# ---- Scaling D. mu(gamma)/mu(0) vs gamma, by n (Fig. S4, right) ---------
 
 sD <- ggplot(SC, aes(gamma, mu_ratio_med, colour = factor(n))) +
   geom_line(linewidth = 0.5) +
@@ -401,7 +413,7 @@ sD <- ggplot(SC, aes(gamma, mu_ratio_med, colour = factor(n))) +
   theme_paper
 show(sD, "figS_scaling_mu.pdf", w = PAGE, h = 2.5)
 
-# ---- Scaling E. gamma*(c) vs seeding events per entry node c/n --------------
+# ---- Scaling E. gamma*(c) vs c/n (diagnostic, not in the article) --------------
 # Collapse of the curves for different n means gamma* depends on c only
 # through c/n. Solid: A = 2; dashed: A = 0.5.
 
@@ -413,7 +425,7 @@ sE <- ggplot(filter(GS, frac_ident >= 0.5), aes(x, gstar_med, colour = factor(n)
   theme_paper
 show(sE, "figS_scaling_gamma_star.pdf", w = PAGE, h = 2.6)
 
-# ---- Scaling F. gamma*(x): finite n, n -> infinity limit, asymptote -----------
+# ---- Fig. S5. gamma*(x): finite n, n -> infinity limit, asymptote -----------
 # Needs code/08_gamma_star_limit.R. x = c/n, A = 2. Colours: finite n
 # (median). Black solid: n -> infinity limit. Black dashed: K/x. Grey dashed:
 # gamma_2 = a - 1.
@@ -445,7 +457,7 @@ if (file.exists("results/08_gamma_star_finite.csv")) {
 # population); runs were stopped there, so case counts are capped.
 ###############################################################################
 
-# ---- Fig 5 (SM). Core network at realistic transmissibility ------------------
+# ---- Fig. S8. Core network at realistic transmissibility ------------------
 # (a) P(large outbreak) after one seeding event into a client vs another
 #     entry node, by tau (mean over 10 networks, +-2 SE across networks).
 # (b) the same under repeated forcing vs gamma, by tau; columns c = 10, 100.
@@ -480,7 +492,7 @@ if (file.exists("results/10b_targeting_raw.csv")) {
   show(f5a + f5b + plot_layout(widths = c(1, 1.8)), "fig5_core_network.pdf", w = PAGE, h = 3.2)
 } else message("Run code/10b_core_realistic_tau.R first")
 
-# ---- Fig S (SM). Core calibration (code/09) -----------------------------------
+# ---- Core calibration, code/09 (diagnostic, not in the article) -----------------------------------
 # (a) implied partners per sex worker per year vs sex-worker prevalence
 #     (median over networks), with Brewer et al.'s measured median (206) and
 #     mean (694) per year. (b) share of men who are clients vs client
@@ -521,7 +533,7 @@ if (file.exists("results/09_core_network_check_summary.csv")) {
 # GENERALIZATION AND CUT-OFF CROSSOVER (needs code/11_generalization_crossover.R)
 ###############################################################################
 
-# ---- Gen A (main Fig. 4). Growth exponent theta_eta(gamma) -------------------
+# ---- Fig. 5. Growth exponent theta_eta(gamma) -------------------
 # Points: fitted over n = 10^3..10^6; lines: piecewise prediction with
 # gamma_1 = a - 1 - eta (dotted, colour of eta) and gamma_2 = a - 1 (dashed).
 if (file.exists("results/11_partA_theta.csv")) {
@@ -540,7 +552,7 @@ if (file.exists("results/11_partA_theta.csv")) {
   show(gA, "figS_gen_theta_eta.pdf", w = COL, h = 4.4)
 }
 
-# ---- Gen B (SM). gamma*(x): exact limit vs small-x and large-x asymptotes -----
+# ---- Fig. S6. gamma*(x): exact limit vs small-x and large-x asymptotes -----
 if (file.exists("results/11_partB_gamma_star.csv")) {
   GB <- read.csv("results/11_partB_gamma_star.csv")
   # Each asymptote is drawn only in its own regime: leading order for x <= 1e-2,
@@ -569,7 +581,7 @@ if (file.exists("results/11_partB_gamma_star.csv")) {
   show(gB, "figS_gen_gamma_star_eta.pdf", w = PAGE, h = 4.8)
 }
 
-# ---- Gen C (main Fig. 5). Cut-off crossover: capped / uncapped vs n / n_c ----
+# ---- Fig. 6. Cut-off crossover: capped / uncapped vs n / n_c ----
 # Rows: targeted mean degree (top), participation ratio Y2 (bottom).
 if (file.exists("results/11_partC_crossover.csv")) {
   GCx <- read.csv("results/11_partC_crossover.csv") %>% filter(gamma > 2.31)
